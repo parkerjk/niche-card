@@ -1,7 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    fetch("https://raw.githubusercontent.com/andenacitelli/credit-card-bonuses-api/main/exports/data.json", {
+    })
+      .then((res) => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => console.error("Error fetching card information:", error));
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
