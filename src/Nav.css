@@ -1,0 +1,45 @@
+.outfit-niche-header {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+}
+
+.niche-navbar {
+  background-color: black;
+  padding: 1rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    padding-right: 2rem;
+}
+
+.nav-links li a {
+    color: white !important;
+    text-decoration: none;
+}
+
+.nav-links li a:visited {
+    color: white !important;
+}
+
+.nav-links li a:active {
+    color: white !important;
+}
+
+.nav-links li a:hover {
+    color: rgb(92, 122, 255) !important;
+    text-decoration: none;
+}
+
+.nav-logo {
+    height: 75px;
+    margin: 0;
+}
