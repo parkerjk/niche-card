@@ -27,8 +27,8 @@ app.post("/api/compare", async (req, res) => {
             model: "gpt-5-nano",
             input: `You are a credit card analysis AI tool that compares credit cards based on rewards and fees. Give a holistic breakdown of the provided cards.
             Use bullet points and emojis, make sure to emphasize reward categories and make sure you go over areas of rewards those cards dont cover, make this a big point. 
-            Ensure output length is between 100 - 250, use paragraphs and emojis. Do what you can with the information. 
-            Give final tips on what other cards to get. Give a one off response and do NOT ask for more information. 
+            Ensure output length is between 100 - 300, use paragraphs and emojis. Do what you can with the information. 
+            Give final tips on what other SPECIFIC cards to get. Give a one off response and do NOT ask for more information. 
             Give examples of use cases for each card. Format the response in HTML format for web display, use section headers, normal header, lists, and div elements, be consistent for all sections.
             NO EM DASHES. Get straight to the point, don't say anything like here's a breakdown.
             This text is to be displayed on a credit card website format for web viewing. Here is a sample for a single card: 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Container, Form, Button, Row, Col, Card } from "react-bootstrap";
+import { Container, Button, Row, Col, Card } from "react-bootstrap";
 import { PuffLoader } from "react-spinners";
 import '../Nav.css'
 
 export default function MyCards() {
-    const [responseText, setResponseText] = useState("");
+    //const [responseText, setResponseText] = useState("");
     const [favoriteCards, setFavoriteCards] = useState(
         JSON.parse(sessionStorage.getItem("favorites")) || []
     );
@@ -59,7 +59,7 @@ export default function MyCards() {
                                         src={`https://www.offeroptimist.com${card.imageUrl}`}
                                         style={{ width: "100%", height: "200px" }}
                                     />
-                                    <Card.Title className="text-dark">{card.name}</Card.Title>
+                                    <Card.Title className="card-name">{card.name}</Card.Title>
                                     <Card.Text className="text-muted">
                                         <strong>Issuer:</strong> {card.issuer.replaceAll("_", " ")}
                                     </Card.Text>
@@ -84,7 +84,7 @@ export default function MyCards() {
 
             <div className="d-flex justify-content-center">
                 
-                <Button className="niche-button" disabled={favoriteCards.length == 0} onClick={fetchResponse}>
+                <Button className="niche-button" disabled={favoriteCards.length === 0} onClick={fetchResponse}>
                     Get <strong>Niche</strong>AI Breakdown
                 </Button>
             </div>
