@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import CardDetails from './components/CardDetails';
 import MyCards from './components/MyCards';
+import About from './components/About';
 
 function App() {
   return <Routes>
@@ -12,6 +13,7 @@ function App() {
     <Route path="/main" element={< Homepage/>} />
     <Route path="/card/:cardId" element={<CardDetails />} />
     <Route path="/mycards" element={<MyCards />} />
+    <Route path="/about" element={<About/>} />
     <Route path="*" element={<Navigate to="/main" replace />} />
   </Routes>
 }

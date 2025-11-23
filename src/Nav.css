@@ -64,3 +64,14 @@
   
       }
   }
+
+.niche-button {
+    margin: 0;
+    font-size: 24px;
+    background-color:green;
+    border: none;
+}
+
+.niche-button:hover {
+    filter: drop-shadow(0 0 20px #00ff00);
+}

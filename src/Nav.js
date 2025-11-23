@@ -21,16 +21,13 @@ return (
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
             <BootstrapNav>
-                        <BootstrapNav.Link as={Link} to="/compare" className="nav-links" style={{color: 'white'}}>
-                            Card Comparison with NicheAI
-                        </BootstrapNav.Link>
-                        <BootstrapNav.Link as={Link} to="/mycards" className="nav-links" style={{color: 'white'}}>
-                            My Cards
-                        </BootstrapNav.Link>
-                        <BootstrapNav.Link as={Link} to="/about" className="nav-links" style={{color: 'white'}}>
-                            About Us
-                        </BootstrapNav.Link>
-                    </BootstrapNav>
+                <BootstrapNav.Link as={Link} to="/mycards" className="nav-links" style={{color: 'white'}}>
+                    My Cards with NicheAI
+                </BootstrapNav.Link>
+                <BootstrapNav.Link as={Link} to="/about" className="nav-links" style={{color: 'white'}}>
+                    About
+                </BootstrapNav.Link>
+            </BootstrapNav>
             </Navbar.Collapse>
         </Container>
     </Navbar>

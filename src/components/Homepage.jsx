@@ -57,9 +57,9 @@ export default function Homepage() {
                 <Card.Body className="d-flex flex-column">
                   <Card.Img variant="top" src={`https://www.offeroptimist.com${card.imageUrl}`}/>
                   <Card.Title className="text-dark">{card.name}</Card.Title>
-                  <Card.Text className="text-muted">Issuer: {card.issuer}</Card.Text>
-                  <Card.Text className="text-muted">Annual Fee: ${card.annualFee.toFixed(2)}</Card.Text>
-                  <Card.Text className="text-muted">Universal Cash Back: {card.universalCashbackPercent}%</Card.Text>
+                  <Card.Text className="text-muted"><strong>Issuer:</strong> {card.issuer.replaceAll("_", " ")}</Card.Text>
+                  <Card.Text className="text-muted"><strong>Annual Fee:</strong> ${card.annualFee.toFixed(2)}</Card.Text>
+                  <Card.Text className="text-muted"><strong>Universal Cash Back:</strong> {card.universalCashbackPercent}%</Card.Text>
                   <Button
                     style={{marginBottom: '4px'}}
                     as={Link}
