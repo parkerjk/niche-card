@@ -18,7 +18,7 @@ export default function MyCards() {
         element.textContent = ""; // Clear previous text
         if (favoriteCards.length > 0) {
             try {
-                const res = await fetch("http://localhost:3001/api/compare", {
+                const res = await fetch("https://niche-card.onrender.com/api/compare", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ input: favoriteCards })
