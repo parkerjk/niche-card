@@ -8,7 +8,7 @@ function Nav() {
 return (
     <Navbar expand="lg" className="niche-navbar">
         <Container fluid>
-            <Navbar.Brand>
+            <Navbar.Brand as={Link} to="/main">
                 <Row style={{alignItems: 'center'}}>
                     <Col style={{paddingRight: '0'}}>
                         <img src={logo} alt="NicheCard Logo" className="nav-logo"/>

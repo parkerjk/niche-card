@@ -7,7 +7,26 @@ export default function MyCards() {
         JSON.parse(sessionStorage.getItem("favorites")) || []
     );
 
+    function printByLetter(text) {
+        // Split text into array of letters
+        const letters = text.split("");
+        const element = document.getElementById("ai-response");
+        
+        for (let i = 0; i < letters.length; i++) {
+            setTimeout(() => {
+                if (letters[i] === "<") {
+                    i += 3;
+                    element.textContent += "<br>";
+                } else {
+                    element.textContent += letters[i];
+                }
+            }, 5 * i);
+        }
+    }
+
     const fetchResponse = async () => {
+        const element = document.getElementById("ai-response");
+        element.textContent = ""; // Clear previous text
         if (favoriteCards.length > 0) {
             try {
                 const res = await fetch("http://localhost:3001/api/compare", {
@@ -18,7 +37,9 @@ export default function MyCards() {
 
                 if (res.ok) {
                     const data = await res.json();
-                    setResponseText(data.text);
+                    element.innerHTML = data.text;
+                    //printByLetter(data.text);
+                    //setResponseText(data.text);
                 } else {
                     console.error("Failed to fetch response from backend");
                 }
@@ -26,7 +47,7 @@ export default function MyCards() {
                 console.error("Network error:", error);
             }
         } else {
-            setResponseText(""); // clear when no cards
+            element.text = ""; // clear when no cards
         }
     };
 
@@ -54,7 +75,8 @@ export default function MyCards() {
                                     <Card.Text className="text-muted">
                                         Issuer: {card.issuer}
                                     </Card.Text>
-
+                                    <Card.Text className="text-muted">Annual Fee: ${card.annualFee.toFixed(2)}</Card.Text>
+                                    <Card.Text className="text-muted">Universal Cash Back: {card.universalCashbackPercent}%</Card.Text>
                                     <Button
                                         variant="outline-dark mt-auto"
                                         onClick={() => removeCard(card.cardId)}
@@ -72,9 +94,11 @@ export default function MyCards() {
                 )}
             </Row>
 
-            <Button variant="primary" onClick={fetchResponse}>
-                Get NicheAI Breakdown
-            </Button>
+            <div className="d-flex justify-content-center">
+                <Button variant="primary" onClick={fetchResponse}>
+                    Get NicheAI Breakdown
+                </Button>
+            </div>
             
             <div className="text-center my-5">
                 <h1 className="fw-bold text-white">NicheAI Breakdown</h1>
@@ -82,7 +106,7 @@ export default function MyCards() {
                     className="border rounded p-4 mt-3"
                     style={{ backgroundColor: "black", color: "white" }}
                 >
-                    <p>{responseText}</p>
+                    <p id="ai-response"></p>
                 </div>
             </div>
         </Container>

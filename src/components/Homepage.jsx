@@ -1,5 +1,5 @@
 import '../App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Container, Form, Button, Row, Col, Card, Spinner, Modal, Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,9 +7,11 @@ import { Link } from 'react-router-dom';
 
 export default function Homepage() {
     const [cardList, setCardList] = useState([]); // List of all card information
+    const [displayCards, setDisplayCards] = useState([]);
     const [favoriteCards, setFavoriteCards] = useState(JSON.parse(sessionStorage.getItem("favorites")));
     let favoriteCard = JSON.parse(sessionStorage.getItem("favorites"));
-    
+
+    const searchInput = useRef(""); // Stores search bar input
 
     // Fetch request to pull all card information from API
     useEffect(() => {
@@ -20,20 +22,46 @@ export default function Homepage() {
           .then(data => {
             console.log(data)
             setCardList(data)
+            setDisplayCards(data)
           })
           .catch(error => console.error("Error fetching card information:", error));
       }, []);
+
+      const handleSearch = (e) => {
+        e.preventDefault();
+        setDisplayCards(cardList.filter(card => {
+          if (searchInput.current.value.trim().toLowerCase() == "") {
+            return card
+          } else if (card.name.trim().toLowerCase().includes(searchInput.current.value.trim().toLowerCase())) {
+            return card
+          } else if (card.issuer.trim().toLowerCase().includes(searchInput.current.value.trim().toLowerCase())) {
+            return card
+          }
+        }))
+      }
+
       return <Container className="py-5">
+        <Col md={5} style={{marginBottom: '20px'}}>
+          <Form onSubmit={handleSearch}>
+            <div className="input-group shadow">
+              <Form.Control type="text" placeholder="Search cards..." ref={searchInput} className="border-0 bg-light" />
+              <Button type="submit" variant="dark">Search</Button>
+            </div>
+          </Form>
+        </Col>
         <Row>
           {/* bootstrap row for structuring course cards in a responsive grid */}
-          {cardList.map((card, index) => (
+          {displayCards.map((card, index) => (
             <Col key={index} xs={12} md={6} lg={4} xl={3} className="mb-4">
               <Card className="shadow-sm h-100 border-0 bg-light">
                 <Card.Body className="d-flex flex-column">
                   <Card.Img variant="top" src={`https://www.offeroptimist.com${card.imageUrl}`}/>
                   <Card.Title className="text-dark">{card.name}</Card.Title>
                   <Card.Text className="text-muted">Issuer: {card.issuer}</Card.Text>
+                  <Card.Text className="text-muted">Annual Fee: ${card.annualFee.toFixed(2)}</Card.Text>
+                  <Card.Text className="text-muted">Universal Cash Back: {card.universalCashbackPercent}%</Card.Text>
                   <Button
+                    style={{marginBottom: '4px'}}
                     as={Link}
                     to={`/card/${card.cardId}`}
                     state={{card}}

@@ -21,6 +21,15 @@ export default function CardDetails() {
                   <Card.Text className="text-muted">Issuer: {card.issuer}</Card.Text>
                   <Card.Text className="text-muted">Annual Fee: ${card.annualFee.toFixed(2)}</Card.Text>
                   <Card.Text className="text-muted">Universal Cash Back: {card.universalCashbackPercent}%</Card.Text>
+                  {
+                    card?.credit?.[0] ? <Card.Text className="text-muted">{card.credit[0]}</Card.Text> : <></>
+                  }
+                  {
+                    card.isBusiness ? <Card.Text className="text-muted">This is a Business Card</Card.Text> : <Card.Text className="text-muted">This is not a Business Card</Card.Text>
+                  }
+                  {
+                    card.offers ? <Card.Text className="text-muted">Minimum Spend ${card.offers[0].spend.toFixed(2)}</Card.Text> : <></>
+                  }
                 </Card.Body>
               </Card>
     </Container>

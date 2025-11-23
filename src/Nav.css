@@ -34,7 +34,7 @@
     color: white !important;
 }
 
-.nav-links li a:hover {
+.nav-links:hover {
     color: rgb(92, 122, 255) !important;
     text-decoration: none;
 }
@@ -42,4 +42,25 @@
 .nav-logo {
     height: 75px;
     margin: 0;
+    animation: pulse-glow 15s infinite ease-in-out;
+    filter: drop-shadow(0 0 20px #00ff00);
 }
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+      }
+      25% {
+        transform: scale(1.075);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+      75% {
+        transform: scale(1.075);
+      }
+      100% {
+        transform: scale(1);
+  
+      }
+  }
